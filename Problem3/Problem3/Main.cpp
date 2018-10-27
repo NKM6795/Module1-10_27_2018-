@@ -1,4 +1,4 @@
-
+#include "Alpha.h"
 
 int main()
 {

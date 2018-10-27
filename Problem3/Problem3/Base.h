@@ -4,17 +4,20 @@
 #include <iostream>
 
 
-int serialNumber = 1;
-int S = 0;
+using namespace std;
+
+
+extern int serialNumber;
+extern int S;
 
 
 class Base
 {
 protected:
-	int N;
+	int *N;
 	
 public:
 	Base();
-	virtual ~Base() {}
+	virtual ~Base();
 
 };
