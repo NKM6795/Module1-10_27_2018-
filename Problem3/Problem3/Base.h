@@ -17,10 +17,17 @@ class Base
 {
 protected:
 	int *N;
+	vector<Base*> elements;
 	
 public:
 	Base();
 	virtual ~Base();
 
 	int getN();
+
+	vector<Base*> *getVectorBase();
+
+	void pushBack(Base *element);
+
+	void popBack();
 };
