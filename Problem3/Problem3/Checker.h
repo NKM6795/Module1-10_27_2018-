@@ -17,6 +17,14 @@ void deleteElement(vector<unique_ptr<Base> > &elements, int number, vector<int> 
 
 void deleteElement(vector<unique_ptr<Base> > &elements);
 
+
+void coutSForCombination(vector<vector<int> > &types);
+
+void getCombination(int aSerialNumber, int bSerialNumber, int cSerialNumber, int M, vector<vector<int> > &types, bool offset);
+
+void getCombination(int M);
+
+
 void checkerForUser();
 
 void checkerForUnitTest();
