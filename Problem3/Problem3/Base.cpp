@@ -9,30 +9,29 @@ int S = 0;
 
 Base::~Base()
 {
-	S = 2 * S - *N + 11;
-	delete N;
+	S = 2 * S - N + 11;
 }
 
 int Base::getN()
 {
-	return *N;
+	return N;
 }
 
-vector<Base*> *Base::getVectorBase()
+vector<unique_ptr<Base> > *Base::getVectorBase()
 {
 	return &elements;
 }
 
-void Base::pushBack(Base *element)
+void Base::pushBack(unique_ptr<Base> element)
 {
-	elements.push_back(element);
+	elements.push_back(move(element));
 }
 
 void Base::popBack()
 {
 	if (elements.size() != 0)
 	{
-		delete elements.back();
+		elements.back().reset();
 		elements.pop_back();
 	}
 }

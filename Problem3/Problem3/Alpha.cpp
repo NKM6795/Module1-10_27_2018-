@@ -3,7 +3,7 @@
 
 Alpha::Alpha()
 {
-	N = new int(alphaSerialNumber);
+	N = alphaSerialNumber;
 	++alphaSerialNumber;
 }
 
@@ -14,5 +14,5 @@ Alpha::~Alpha()
 		popBack();
 	}
 
-	S = S - 2 * *N + 11;
+	S = S - 2 * N + 11;
 }

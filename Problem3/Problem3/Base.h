@@ -18,8 +18,8 @@ extern int S;
 class Base
 {
 protected:
-	int *N;
-	vector<Base*> elements;
+	int N;
+	vector<unique_ptr<Base> > elements;
 	
 public:
 	Base() {}
@@ -27,9 +27,9 @@ public:
 
 	int getN();
 
-	vector<Base*> *getVectorBase();
+	vector<unique_ptr<Base> > *getVectorBase();
 
-	void pushBack(Base *element);
+	void pushBack(unique_ptr<Base> element);
 
 	void popBack();
 };

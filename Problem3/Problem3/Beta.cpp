@@ -3,7 +3,7 @@
 
 Beta::Beta()
 {
-	N = new int(betaSerialNumber);
+	N = betaSerialNumber;
 	++betaSerialNumber;
 }
 
@@ -14,5 +14,5 @@ Beta::~Beta()
 		popBack();
 	}
 
-	S = S - *N;
+	S = S - N;
 }

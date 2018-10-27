@@ -3,7 +3,7 @@
 
 Gamma::Gamma()
 {
-	N = new int(gammaSerialNumber);
+	N = gammaSerialNumber;
 	++gammaSerialNumber;
 }
 
@@ -14,5 +14,5 @@ Gamma::~Gamma()
 		popBack();
 	}
 
-	S = S + 3 * *N;
+	S = S + 3 * N;
 }

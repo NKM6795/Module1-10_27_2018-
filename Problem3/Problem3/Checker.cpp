@@ -1,7 +1,7 @@
 #include "Checker.h"
 
 
-int afterRemoval(vector<Base*> &elements, int s)
+int afterRemoval(vector<unique_ptr<Base> > &elements, int s)
 {
 	int SCopy = s;
 	for (int i = elements.size() - 1; i >= 0; --i)
@@ -27,24 +27,24 @@ int afterRemoval(vector<Base*> &elements, int s)
 	return SCopy;
 }
 
-void addElement(vector<Base*> &elements, int number, vector<int> &index, int type)
+void addElement(vector<unique_ptr<Base> > &elements, int number, vector<int> &index, int type)
 {
 	if (number == 0)
 	{
-		Base *newElement;
+		unique_ptr<Base> newElement;
 		if (type == 0)
 		{
-			newElement = new Alpha;
+			newElement = unique_ptr<Base>(new Alpha);
 		}
 		else if (type == 1)
 		{
-			newElement = new Beta;
+			newElement = unique_ptr<Base>(new Base);
 		}
 		else if (type == 2)
 		{
-			newElement = new Gamma;
+			newElement = unique_ptr<Base>(new Gamma);
 		}
-		elements.push_back(newElement);
+		elements.push_back(move(newElement));
 	}
 	else
 	{
@@ -55,17 +55,18 @@ void addElement(vector<Base*> &elements, int number, vector<int> &index, int typ
 	}
 }
 
-void addElement(vector<Base*> &elements, int type)
+void addElement(vector<unique_ptr<Base> > &elements, int type)
 {
 	vector<int> temp;
 
 	addElement(elements, 0, temp, type);
 }
 
-void deleteElement(vector<Base*> &elements, int number, vector<int> &index)
+void deleteElement(vector<unique_ptr<Base> > &elements, int number, vector<int> &index)
 {
 	if (number == 0)
 	{
+		elements.back().reset();
 		elements.pop_back();
 	}
 	else
@@ -77,18 +78,18 @@ void deleteElement(vector<Base*> &elements, int number, vector<int> &index)
 	}
 }
 
-void deleteElement(vector<Base*> &elements)
+void deleteElement(vector<unique_ptr<Base> > &elements)
 {
 	if (elements.size() != 0)
 	{
-		delete elements.back();
+		elements.back().reset();
 		elements.pop_back();
 	}
 }
 
 void checkerForUser()
 {
-	vector<Base*> elements;
+	vector<unique_ptr<Base> > elements;
 
 	string help = "Available commands: \n-1 - exit\n0 - show menu\n1 - show S\n2 - add Alpha\n3 - add Beta\n4 - add Gamma\n5 - delete back\n\
 6 - add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)\n7 - add Beta invector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)\n\
@@ -175,7 +176,7 @@ void checkerForUnitTest()
 	{
 		cout << "\nUnit test number " << i << '\n';
 
-		vector<Base*> elements;
+		vector<unique_ptr<Base> > elements;
 
 
 		string name;
