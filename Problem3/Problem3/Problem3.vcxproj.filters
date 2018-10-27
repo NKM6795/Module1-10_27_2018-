@@ -24,12 +24,18 @@
     <ClCompile Include="Alpha.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Beta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Alpha.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
