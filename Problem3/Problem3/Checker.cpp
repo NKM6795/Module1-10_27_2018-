@@ -86,7 +86,7 @@ void deleteElement(vector<Base*> &elements)
 	}
 }
 
-void checker()
+void checkerForUser()
 {
 	vector<Base*> elements;
 
@@ -156,4 +156,158 @@ void checker()
 		cout << "**********************************\n";
 	}
 
+	while (elements.size() != 0)
+	{
+		deleteElement(elements);
+	}
+}
+
+void checkerForUnitTest()
+{
+	ifstream fileIn("Unit tests/Number of unit test.dat");
+
+	int number;
+	fileIn >> number;
+
+	fileIn.close();
+
+	for (int i = 0; i < number; ++i)
+	{
+		cout << "\nUnit test number " << i << '\n';
+
+		vector<Base*> elements;
+
+
+		string name;
+		name = "Unit tests/" + to_string(i) + ".dat";
+
+		fileIn.open(name);
+
+		int countOfrequests;
+		fileIn >> countOfrequests;
+
+		string massage;
+
+		for (int j = 0; j < countOfrequests; ++j)
+		{
+			getline(fileIn, massage);
+			if (massage == "")
+			{
+				getline(fileIn, massage);
+			}
+			cout << massage << '\n';
+
+			if (massage == "exit")
+			{
+				break;
+			}
+			else if (massage == "show S")
+			{
+				cout << "S = " << S << '\n';
+			}
+			else if (massage == "add Alpha")
+			{
+				addElement(elements, 0);
+			}
+			else if (massage == "add Beta")
+			{
+				addElement(elements, 1);
+			}
+			else if (massage == "add Gamma")
+			{
+				addElement(elements, 2);
+			}
+			else if (massage == "delete back")
+			{
+				deleteElement(elements);
+			}
+			else if (massage == "add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)")
+			{
+				int n;
+				fileIn >> n;
+				vector<int> index;
+				for (int i = 0; i < n; ++i)
+				{
+					int temp;
+					fileIn >> temp;
+					index.push_back(temp);
+				}
+
+				addElement(elements, n, index, 0);
+			}
+			else if (massage == "add Beta in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)")
+			{
+				int n;
+				fileIn >> n;
+				vector<int> index;
+				for (int i = 0; i < n; ++i)
+				{
+					int temp;
+					fileIn >> temp;
+					index.push_back(temp);
+				}
+
+				addElement(elements, n, index, 1);
+			}
+			else if (massage == "add Gamma in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)")
+			{
+				int n;
+				fileIn >> n;
+				vector<int> index;
+				for (int i = 0; i < n; ++i)
+				{
+					int temp;
+					fileIn >> temp;
+					index.push_back(temp);
+				}
+
+				addElement(elements, n, index, 2);
+			}
+			else if (massage == "delete back in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)")
+			{
+				int n;
+				fileIn >> n;
+				vector<int> index;
+				for (int i = 0; i < n; ++i)
+				{
+					int temp;
+					fileIn >> temp;
+					index.push_back(temp);
+				}
+
+				deleteElement(elements, n, index);
+			}
+			else if (massage == "S after removal")
+			{
+				cout << "S(after removal) = " << afterRemoval(elements, S) << '\n';
+			}
+		}
+
+		while (elements.size() != 0)
+		{
+			deleteElement(elements);
+		}
+
+		fileIn.close();
+	}
+	cout << "Press \"Enter\" for exit\n";
+	cin.get();
+	cin.get();
+	cin.get();
+}
+
+void checker()
+{
+	cout << "-1 - exit\n0 - user\n1 - unit test\n";
+	int massage;
+	cin >> massage;
+
+	if (massage == 0)
+	{
+		checkerForUser();
+	}
+	else if (massage == 1)
+	{
+		checkerForUnitTest();
+	}
 }

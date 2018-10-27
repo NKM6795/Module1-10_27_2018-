@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <fstream>
 #include "Alpha.h"
 #include "Beta.h"
 #include "Gamma.h"
@@ -15,5 +16,9 @@ void addElement(vector<Base*> &elements, int type);
 void deleteElement(vector<Base*> &elements, int number, vector<int> &index);
 
 void deleteElement(vector<Base*> &elements);
+
+void checkerForUser();
+
+void checkerForUnitTest();
 
 void checker();

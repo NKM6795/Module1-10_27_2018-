@@ -1,0 +1,22 @@
+13
+add Beta
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+1 0
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+2 0 0
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+3 0 0 0
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+4 0 0 0 0
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+5 0 0 0 0 0
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+4 0 0 0 0
+add Alpha in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+5 0 0 0 0 1
+S after removal
+delete back in vector[vector[i1][vector[i2][...[in]]...]] (n, i1, i2, ... , in)
+4 0 0 0 0
+S after removal
+delete back
+show S
