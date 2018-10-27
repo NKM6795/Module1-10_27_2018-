@@ -6,4 +6,7 @@
 #include "Gamma.h"
 
 
+int afterRemoval(vector<Base*> &elements);
+
+
 void checker();

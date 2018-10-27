@@ -22,4 +22,5 @@ public:
 	Base();
 	virtual ~Base();
 
+	int getN();
 };

@@ -16,3 +16,8 @@ Base::~Base()
 	S = 2 * S - *N + 11;
 	delete N;
 }
+
+int Base::getN()
+{
+	return *N;
+}
