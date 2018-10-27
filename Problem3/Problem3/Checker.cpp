@@ -386,6 +386,12 @@ void checkerForUnitTest()
 			{
 				cout << "S(after removal) = " << afterRemoval(elements, S) << '\n';
 			}
+			else if (massage == "get Combination (M)")
+			{
+				int M;
+				fileIn >> M;
+				getCombination(M);
+			}
 		}
 
 		while (elements.size() != 0)
