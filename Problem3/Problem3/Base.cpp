@@ -13,11 +13,6 @@ Base::Base()
 
 Base::~Base()
 {
-	while (elements.size() != 0)
-	{
-		popBack();
-	}
-
 	S = 2 * S - *N + 11;
 	delete N;
 }
@@ -39,6 +34,9 @@ void Base::pushBack(Base *element)
 
 void Base::popBack()
 {
-	delete elements.back();
-	elements.pop_back();
+	if (elements.size() != 0)
+	{
+		delete elements.back();
+		elements.pop_back();
+	}
 }
