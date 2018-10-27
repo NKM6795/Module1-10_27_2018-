@@ -9,7 +9,9 @@
 using namespace std;
 
 
-extern int serialNumber;
+extern int alphaSerialNumber;
+extern int betaSerialNumber;
+extern int gammaSerialNumber;
 extern int S;
 
 
@@ -20,7 +22,7 @@ protected:
 	vector<Base*> elements;
 	
 public:
-	Base();
+	Base() {}
 	virtual ~Base();
 
 	int getN();

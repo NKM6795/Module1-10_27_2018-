@@ -8,6 +8,6 @@ class Gamma : public Base
 {
 
 public:
-	Gamma() {}
+	Gamma();
 	~Gamma();
 };

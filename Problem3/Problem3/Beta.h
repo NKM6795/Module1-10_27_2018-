@@ -8,6 +8,6 @@ class Beta : public Base
 {
 
 public:
-	Beta() {}
+	Beta();
 	~Beta();
 };

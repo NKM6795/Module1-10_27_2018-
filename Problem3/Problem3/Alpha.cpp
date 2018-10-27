@@ -1,6 +1,12 @@
 #include "Alpha.h"
 
 
+Alpha::Alpha()
+{
+	N = new int(alphaSerialNumber);
+	++alphaSerialNumber;
+}
+
 Alpha::~Alpha()
 {
 	while (elements.size() != 0)

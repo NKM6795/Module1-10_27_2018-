@@ -1,15 +1,11 @@
 #include "Base.h"
 
 
-int serialNumber = 1;
+int alphaSerialNumber = 1;
+int betaSerialNumber = 1;
+int gammaSerialNumber = 1;
 int S = 0;
 
-
-Base::Base()
-{
-	N = new int(serialNumber);
-	++serialNumber;
-}
 
 Base::~Base()
 {

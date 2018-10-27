@@ -6,7 +6,7 @@ int afterRemoval(vector<Base*> &elements, int s)
 	int SCopy = s;
 	for (int i = elements.size() - 1; i >= 0; --i)
 	{
-		SCopy += afterRemoval(*elements[i]->getVectorBase(), SCopy);
+		SCopy = afterRemoval(*elements[i]->getVectorBase(), SCopy);
 
 		if (typeid(*elements[i]) == typeid(Alpha))
 		{

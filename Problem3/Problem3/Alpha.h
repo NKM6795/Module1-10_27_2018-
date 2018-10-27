@@ -8,6 +8,6 @@ class Alpha : public Base
 {
 
 public:
-	Alpha() {}
+	Alpha();
 	~Alpha();
 };
