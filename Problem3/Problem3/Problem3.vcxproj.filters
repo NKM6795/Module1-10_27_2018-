@@ -30,6 +30,9 @@
     <ClCompile Include="Gamma.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Checker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Gamma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Checker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

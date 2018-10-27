@@ -1,9 +1,9 @@
-#include "Alpha.h"
-#include "Beta.h"
-#include "Gamma.h"
+#include "Checker.h"
 
 
 int main()
 {
+	checker();
+
 	return 0;
 }
