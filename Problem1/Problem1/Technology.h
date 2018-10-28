@@ -2,6 +2,7 @@
 
 
 #include "AnnouncementAllClass.h"
+#include "Developer.h"
 
 
 class Technology
