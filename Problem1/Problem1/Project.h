@@ -11,9 +11,7 @@ class Project
 
 	float complexity;
 
-	vector<Technology *> technology;
-
-	vector<Developer *> developers;
+	vector<pair<Technology *, vector<Developer *> > > technology;
 
 	vector<Project *> toComplete;
 
@@ -27,7 +25,11 @@ public:
 	Project(string name, float complexity, vector<float> coefficientForTime) :
 		name(name), complexity(complexity), coefficientForTime(coefficientForTime) {}
 
-	vector<Technology *> *getListOfTechnology();
+	vector<pair<Technology *, vector<Developer *> > > *getListOfTechnology();
 
 	vector<Project *> *getListOfProjects();
+
+	string getName();
+
+	friend ostream &operator << (ostream& os, const Project &project);
 };

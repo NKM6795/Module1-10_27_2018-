@@ -20,5 +20,7 @@ public:
 	Technology(string name, float coefficientTime, float probabilityOfChange) : 
 		name(name), coefficientTime(coefficientTime), probabilityOfChange(probabilityOfChange) {}
 
+	string getName();
 
+	friend ostream &operator << (ostream& os, const Technology &technology);
 };

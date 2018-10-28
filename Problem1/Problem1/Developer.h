@@ -25,4 +25,8 @@ public:
 		name(name), project(nullptr), efficiency(efficiency) {}
 
 	vector<Technology *> *getListOfTechnology();
+
+	string getName();
+
+	friend ostream &operator << (ostream& os, const Developer &developer);
 };

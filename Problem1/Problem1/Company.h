@@ -31,6 +31,16 @@ public:
 
 	void setProjects(string fileName);
 
+
+	void coutAllTechnology();
+
+	void coutAllDeveloper();
+
+	void coutAllProject();
+
+	void coutAllElement();
+
+
 	void randomConnectionsInDevelopers();
 
 	void randomConnectionsInProjects();

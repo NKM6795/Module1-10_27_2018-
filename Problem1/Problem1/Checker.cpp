@@ -5,15 +5,21 @@ void demonstration()
 {
 	Company *company = new Company("F");
 
+
 	company->setTechnology("Data/Technology.dat");
 
 	company->setDevelopers("Data/Developers.dat");
 	
 	company->setProjects("Data/Projects.dat");
 
+
 	company->randomConnectionsInProjects();
 
 	company->randomConnectionsInDevelopers();
+
+
+	company->coutAllElement();
+
 
 	delete company;
 }

@@ -86,6 +86,44 @@ void Company::setProjects(string fileName)
 	fileIn.close();
 }
 
+
+void Company::coutAllTechnology()
+{
+	cout << "Technology:\n";
+	for (int i = 0; i < int(technology.size()); ++i)
+	{
+		cout << *technology[i];
+	}
+}
+
+void Company::coutAllDeveloper()
+{
+	cout << "Developers:\n";
+	for (int i = 0; i < int(developers.size()); ++i)
+	{
+		cout << *developers[i] << '\n';
+	}
+}
+
+void Company::coutAllProject()
+{
+	cout << "Projects:\n";
+	for (int i = 0; i < int(projects.size()); ++i)
+	{
+		cout << *projects[i] << '\n';
+	}
+}
+
+void Company::coutAllElement()
+{
+	coutAllTechnology();
+
+	coutAllDeveloper();
+
+	coutAllProject();
+}
+
+
 void Company::randomConnectionsInDevelopers()
 {
 	vector<int> indexes;
@@ -98,7 +136,7 @@ void Company::randomConnectionsInDevelopers()
 	{
 		random_shuffle(indexes.begin(), indexes.end());
 
-		int number = rand() % int(technology.size());
+		int number = 1 + rand() % int(technology.size() / 10);
 
 		for (int j = 0; j < number; ++j)
 		{
@@ -119,11 +157,11 @@ void Company::randomConnectionsInProjects()
 	{
 		random_shuffle(indexes.begin(), indexes.end());
 
-		int number = rand() % int(technology.size());
+		int number = 1 + rand() % int(technology.size() / 10);
 
 		for (int j = 0; j < number; ++j)
 		{
-			projects[i]->getListOfTechnology()->push_back(technology[indexes[j]]);
+			projects[i]->getListOfTechnology()->push_back({ technology[indexes[j]], vector<Developer *>() });
 		}
 	}
 
