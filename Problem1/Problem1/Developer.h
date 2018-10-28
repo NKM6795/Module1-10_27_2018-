@@ -24,4 +24,5 @@ public:
 	Developer(string name, float efficiency) :
 		name(name), project(nullptr), efficiency(efficiency) {}
 
+	vector<Technology *> *getListOfTechnology();
 };

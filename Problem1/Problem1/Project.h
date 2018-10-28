@@ -27,5 +27,7 @@ public:
 	Project(string name, float complexity, vector<float> coefficientForTime) :
 		name(name), complexity(complexity), coefficientForTime(coefficientForTime) {}
 
+	vector<Technology *> *getListOfTechnology();
 
+	vector<Project *> *getListOfProjects();
 };

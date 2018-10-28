@@ -27,5 +27,11 @@ public:
 
 	void getTechnology(string fileName);
 
+	void getDevelopers(string fileName);
 
+	void getProjects(string fileName);
+
+	void randomConnectionsInDevelopers();
+
+	void randomConnectionsInProjects();
 };
