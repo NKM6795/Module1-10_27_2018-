@@ -1,0 +1,19 @@
+#pragma once
+
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+
+using namespace std;
+
+
+class Technology;
+
+class Developer;
+
+class Project;
+
+class Company;

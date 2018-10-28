@@ -115,6 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Technology.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnnouncementAllClass.h" />
+    <ClInclude Include="Technology.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
