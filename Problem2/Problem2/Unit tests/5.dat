@@ -1,0 +1,19 @@
+5
+negative (n)
+-9
+else (s)
+fd
+text (s)
+12 90
+text (s)
+20 10
+list (n, v1, v2, .... , vn)
+4
+negative (n)
+-9
+else (s)
+fd
+text (s)
+12 90
+text (s)
+20 10
