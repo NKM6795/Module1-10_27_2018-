@@ -25,11 +25,11 @@ public:
 
 	~Company();
 
-	void getTechnology(string fileName);
+	void setTechnology(string fileName);
 
-	void getDevelopers(string fileName);
+	void setDevelopers(string fileName);
 
-	void getProjects(string fileName);
+	void setProjects(string fileName);
 
 	void randomConnectionsInDevelopers();
 

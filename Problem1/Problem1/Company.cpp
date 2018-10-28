@@ -23,7 +23,7 @@ Company::~Company()
 }
 
 
-void Company::getTechnology(string fileName)
+void Company::setTechnology(string fileName)
 {
 	ifstream fileIn(fileName);
 
@@ -44,7 +44,7 @@ void Company::getTechnology(string fileName)
 	fileIn.close();
 }
 
-void Company::getDevelopers(string fileName)
+void Company::setDevelopers(string fileName)
 {
 	ifstream fileIn(fileName);
 
@@ -65,7 +65,7 @@ void Company::getDevelopers(string fileName)
 	fileIn.close();
 }
 
-void Company::getProjects(string fileName)
+void Company::setProjects(string fileName)
 {
 	ifstream fileIn(fileName);
 
@@ -134,12 +134,12 @@ void Company::randomConnectionsInProjects()
 			vector<int> indexes2;
 			for (int j = i + 1; j < int(projects.size()); ++j)
 			{
-				indexes.push_back(j);
+				indexes2.push_back(j);
 			}
 
 			random_shuffle(indexes2.begin(), indexes2.end());
 
-			for (int j = i + 1; j < int(projects.size()); ++j)
+			for (int j = 0; j < int(projects.size()) - i - 1; ++j)
 			{
 				if (rand() % 3 == 0)
 				{

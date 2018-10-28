@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Checker.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="Developer.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -123,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnnouncementAllClass.h" />
+    <ClInclude Include="Checker.h" />
     <ClInclude Include="Company.h" />
     <ClInclude Include="Developer.h" />
     <ClInclude Include="Project.h" />
