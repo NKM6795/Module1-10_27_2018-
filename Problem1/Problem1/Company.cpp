@@ -1,6 +1,21 @@
 #include "Company.h"
 
 
+float Company::getMaxEfficiency(Project *project, vector<Developer *> &developer)
+{
+	float result = 0;
+
+	for (int i = 0; i < int(developer.size()); ++i)
+	{
+		if (developer[i]->getProject() == nullptr && project->checkDeveloper(developer[i]))
+		{
+			result += developer[i]->getEfficiency();
+		}
+	}
+	return result;
+}
+
+
 Company::~Company()
 {
 	while (technology.size() != 0)
@@ -94,6 +109,8 @@ void Company::coutAllTechnology()
 	{
 		cout << *technology[i];
 	}
+	cout << "*********************************************************************************************************************\n\
+*********************************************************************************************************************\n";
 }
 
 void Company::coutAllDeveloper()
@@ -103,6 +120,8 @@ void Company::coutAllDeveloper()
 	{
 		cout << *developers[i] << '\n';
 	}
+	cout << "*********************************************************************************************************************\n\
+*********************************************************************************************************************\n";
 }
 
 void Company::coutAllProject()
@@ -112,6 +131,8 @@ void Company::coutAllProject()
 	{
 		cout << *projects[i] << '\n';
 	}
+	cout << "*********************************************************************************************************************\n\
+*********************************************************************************************************************\n";
 }
 
 void Company::coutAllElement()
@@ -186,4 +207,55 @@ void Company::randomConnectionsInProjects()
 			}
 		}
 	}
+}
+
+void Company::coutListOfNotMadeProjects()
+{
+	vector<Project *> sortProjects;
+	vector<float> maxEfficiency;
+
+	for (int i = 0; i < int(projects.size()); ++i)
+	{
+		if (!projects[i]->completed)
+		{
+			sortProjects.push_back(projects[i]);
+
+			maxEfficiency.push_back(getMaxEfficiency(projects[i], developers));
+
+			for (int j = int(sortProjects.size()) - 1; j > 0; --j)
+			{
+				if (sortProjects[j - 1]->getListOfTechnology()->size() > sortProjects[j]->getListOfTechnology()->size())
+				{
+					swap(sortProjects[j - 1], sortProjects[j]);
+					swap(maxEfficiency[j - 1], maxEfficiency[j]);
+				}
+				else if (sortProjects[j - 1]->getListOfTechnology()->size() == sortProjects[j]->getListOfTechnology()->size() &&
+					sortProjects[j - 1]->getComplexity() > sortProjects[j]->getComplexity())
+				{
+					swap(sortProjects[j - 1], sortProjects[j]);
+					swap(maxEfficiency[j - 1], maxEfficiency[j]);
+				}
+				else if (sortProjects[j - 1]->getListOfTechnology()->size() == sortProjects[j]->getListOfTechnology()->size() &&
+					sortProjects[j - 1]->getComplexity() == sortProjects[j]->getComplexity() && 
+					maxEfficiency[j - 1] < maxEfficiency[j])
+				{
+					swap(sortProjects[j - 1], sortProjects[j]);
+					swap(maxEfficiency[j - 1], maxEfficiency[j]);
+				}
+				else
+				{
+					j = 0;
+				}
+			}
+		}
+	}
+
+	cout << "List of not made projects:\n";
+	for (int i = 0; i < int(sortProjects.size()); ++i)
+	{
+		cout << *sortProjects[i];
+		cout << "Max efficiency: " << maxEfficiency[i] << "\n\n";
+	}
+	cout << "*********************************************************************************************************************\n\
+*********************************************************************************************************************\n";
 }

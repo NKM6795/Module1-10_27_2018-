@@ -21,6 +21,9 @@ void demonstration()
 	company->coutAllElement();
 
 
+	company->coutListOfNotMadeProjects();
+
+
 	delete company;
 }
 

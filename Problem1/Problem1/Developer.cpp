@@ -6,10 +6,35 @@ vector<Technology *> *Developer::getListOfTechnology()
 	return &technology;
 }
 
+
 string Developer::getName()
 {
 	return name;
 }
+
+float Developer::getEfficiency()
+{
+	return efficiency;
+}
+
+Project *Developer::getProject()
+{
+	return project;
+}
+
+
+bool Developer::checkTechnology(Technology *technologyForCheck)
+{
+	for (int i = 0; i < int(technology.size()); ++i)
+	{
+		if (technology[i] == technologyForCheck)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 
 ostream &operator << (ostream& os, const Developer &developer)
 {

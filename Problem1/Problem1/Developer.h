@@ -26,7 +26,15 @@ public:
 
 	vector<Technology *> *getListOfTechnology();
 
+	
 	string getName();
+
+	float getEfficiency();
+
+	Project *getProject();
+
+	bool checkTechnology(Technology *technologyForCheck);
+
 
 	friend ostream &operator << (ostream& os, const Developer &developer);
 };

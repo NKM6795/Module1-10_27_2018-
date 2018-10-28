@@ -17,6 +17,8 @@ class Company
 
 	vector<Project *> projects;
 
+	float getMaxEfficiency(Project *project, vector<Developer *> &developer);
+
 public:
 	Company() :
 		name("") {}
@@ -44,4 +46,6 @@ public:
 	void randomConnectionsInDevelopers();
 
 	void randomConnectionsInProjects();
+
+	void coutListOfNotMadeProjects();
 };
