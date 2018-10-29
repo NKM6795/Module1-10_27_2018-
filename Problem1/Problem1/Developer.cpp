@@ -22,6 +22,10 @@ Project *Developer::getProject()
 	return project;
 }
 
+void Developer::setProject(Project *projectForDeveloper)
+{
+	project = projectForDeveloper;
+}
 
 bool Developer::checkTechnology(Technology *technologyForCheck)
 {

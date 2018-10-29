@@ -227,6 +227,7 @@ void Company::randomConnectionsInProjects()
 	}
 }
 
+
 void Company::coutListOfNotMadeProjects()
 {
 	vector<Project *> sortProjects;
@@ -234,10 +235,9 @@ void Company::coutListOfNotMadeProjects()
 
 	for (int i = 0; i < int(projects.size()); ++i)
 	{
-		if (!projects[i]->completed)
+		if (!projects[i]->completed && projects[i]->checkDevelopers(developers))
 		{
 			sortProjects.push_back(projects[i]);
-
 			maxEfficiency.push_back(getMaxEfficiency(projects[i], developers));
 
 			for (int j = int(sortProjects.size()) - 1; j > 0; --j)

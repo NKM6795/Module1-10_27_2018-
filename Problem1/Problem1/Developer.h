@@ -33,6 +33,8 @@ public:
 
 	Project *getProject();
 
+	void setProject(Project *projectForDeveloper);
+
 	bool checkTechnology(Technology *technologyForCheck);
 
 

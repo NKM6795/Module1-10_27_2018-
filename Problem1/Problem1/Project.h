@@ -17,6 +17,11 @@ class Project
 
 	vector<float> coefficientForTime;		//[0] * ([1] * complexity + [2] * (technology(developer().efficiency, developer.size())) + [3] * float(rand() % 100) / 100)
 
+
+	bool reconnect(vector<vector<int> > &techn, vector<vector<int> > &dev, vector<int> &left, vector<int> &right, int i, vector<bool> &used);
+
+	bool addDevelopers(bool needAdd, vector<Developer *> &developersForCheck);
+
 public:
 	bool completed;
 
@@ -39,6 +44,8 @@ public:
 	float getComplexity();
 
 	bool checkDeveloper(Developer *developer);
+
+	bool checkDevelopers(vector<Developer *> &developersForCheck);
 
 
 	friend ostream &operator << (ostream& os, const Project &project);
