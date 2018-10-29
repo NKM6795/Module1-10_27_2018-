@@ -27,6 +27,6 @@ void getCombination(int M);
 
 void checkerForUser();
 
-void checkerForUnitTest();
+void checkerForDemonstration();
 
 void checker();
