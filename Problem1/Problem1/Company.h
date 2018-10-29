@@ -27,11 +27,11 @@ public:
 
 	~Company();
 
-	void setTechnology(string fileName);
+	void setTechnology(string fileName, bool shortDemonstration);
 
-	void setDevelopers(string fileName);
+	void setDevelopers(string fileName, bool shortDemonstration);
 
-	void setProjects(string fileName);
+	void setProjects(string fileName, bool shortDemonstration);
 
 
 	void coutAllTechnology();

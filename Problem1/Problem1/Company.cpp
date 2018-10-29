@@ -38,7 +38,7 @@ Company::~Company()
 }
 
 
-void Company::setTechnology(string fileName)
+void Company::setTechnology(string fileName, bool shortDemonstration)
 {
 	ifstream fileIn(fileName);
 
@@ -46,6 +46,12 @@ void Company::setTechnology(string fileName)
 	fileIn >> number;
 
 	string tempName;
+	getline(fileIn, tempName);
+
+	if (!shortDemonstration)
+	{
+		fileIn >> number;
+	}
 	getline(fileIn, tempName);
 
 	for (int i = 0; i < number; ++i)
@@ -59,7 +65,7 @@ void Company::setTechnology(string fileName)
 	fileIn.close();
 }
 
-void Company::setDevelopers(string fileName)
+void Company::setDevelopers(string fileName, bool shortDemonstration)
 {
 	ifstream fileIn(fileName);
 
@@ -67,6 +73,12 @@ void Company::setDevelopers(string fileName)
 	fileIn >> number;
 
 	string tempName;
+	getline(fileIn, tempName);
+
+	if (!shortDemonstration)
+	{
+		fileIn >> number;
+	}
 	getline(fileIn, tempName);
 
 	for (int i = 0; i < number; ++i)
@@ -80,7 +92,7 @@ void Company::setDevelopers(string fileName)
 	fileIn.close();
 }
 
-void Company::setProjects(string fileName)
+void Company::setProjects(string fileName, bool shortDemonstration)
 {
 	ifstream fileIn(fileName);
 
@@ -88,6 +100,12 @@ void Company::setProjects(string fileName)
 	fileIn >> number;
 
 	string tempName;
+	getline(fileIn, tempName);
+
+	if (!shortDemonstration)
+	{
+		fileIn >> number;
+	}
 	getline(fileIn, tempName);
 
 	for (int i = 0; i < number; ++i)
@@ -157,7 +175,7 @@ void Company::randomConnectionsInDevelopers()
 	{
 		random_shuffle(indexes.begin(), indexes.end());
 
-		int number = 1 + rand() % int(technology.size() / 10);
+		int number = 1 + rand() % int(1 + technology.size() / 10);
 
 		for (int j = 0; j < number; ++j)
 		{
@@ -178,7 +196,7 @@ void Company::randomConnectionsInProjects()
 	{
 		random_shuffle(indexes.begin(), indexes.end());
 
-		int number = 1 + rand() % int(technology.size() / 10);
+		int number = 1 + rand() % int(1 + technology.size() / 10);
 
 		for (int j = 0; j < number; ++j)
 		{
