@@ -80,6 +80,8 @@ void checkerForUser()
 
 	company->coutAllElement();
 
+	company->coutListOfNotMadeProjects();
+
 	cout << "Input delta time\n";
 	float delta;
 	cin >> delta;
