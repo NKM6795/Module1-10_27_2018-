@@ -250,9 +250,9 @@ void checkerForUser()
 	}
 }
 
-void checkerForUnitTest()
+void checkerForDemonstration()
 {
-	ifstream fileIn("Unit tests/Number of unit test.dat");
+	ifstream fileIn("Demonstration/Number of demonstrations.dat");
 
 	int number;
 	fileIn >> number;
@@ -261,10 +261,10 @@ void checkerForUnitTest()
 
 	for (int i = 0; i < number; ++i)
 	{
-		cout << "\nUnit test number " << i << '\n';
+		cout << "\nDemonstration number " << i << '\n';
 
 		string name;
-		name = "Unit tests/" + to_string(i) + ".dat";
+		name = "Demonstration/" + to_string(i) + ".dat";
 
 		fileIn.open(name);
 
@@ -298,7 +298,7 @@ void checkerForUnitTest()
 
 void checker()
 {
-	cout << "Available commands: \n-1 - exit\n0 - user\n1 - unit test\n";
+	cout << "Available commands: \n-1 - exit\n0 - user\n1 - demonstration\n";
 
 	int massege;
 	cin >> massege;
@@ -308,6 +308,6 @@ void checker()
 	}
 	else if (massege == 1)
 	{
-		checkerForUnitTest();
+		checkerForDemonstration();
 	}
 }

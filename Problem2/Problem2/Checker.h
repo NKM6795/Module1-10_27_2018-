@@ -12,6 +12,6 @@ vector<int> getResult(ifstream &fileIn);
 
 void checkerForUser();
 
-void checkerForUnitTest();
+void checkerForDemonstration();
 
 void checker();
