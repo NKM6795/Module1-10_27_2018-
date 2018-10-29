@@ -1,9 +1,6 @@
 #include "Base.h"
 
 
-int alphaSerialNumber = 1;
-int betaSerialNumber = 1;
-int gammaSerialNumber = 1;
 int S = 0;
 
 

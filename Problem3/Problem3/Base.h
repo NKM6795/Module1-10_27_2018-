@@ -9,15 +9,17 @@
 using namespace std;
 
 
-extern int alphaSerialNumber;
-extern int betaSerialNumber;
-extern int gammaSerialNumber;
 extern int S;
 
 
 class Base
 {
 protected:
+	static int alphaSerialNumber;
+	static int betaSerialNumber;
+	static int gammaSerialNumber;
+
+
 	int N;
 	vector<unique_ptr<Base> > elements;
 	

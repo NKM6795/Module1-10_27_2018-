@@ -1,6 +1,11 @@
 #include "Checker.h"
 
 
+int Base::alphaSerialNumber = 1;
+int Base::betaSerialNumber = 1;
+int Base::gammaSerialNumber = 1;
+
+
 int afterRemoval(vector<unique_ptr<Base> > &elements, int s)
 {
 	int SCopy = s;
@@ -38,7 +43,7 @@ void addElement(vector<unique_ptr<Base> > &elements, int number, vector<int> &in
 		}
 		else if (type == 1)
 		{
-			newElement = unique_ptr<Base>(new Base);
+			newElement = unique_ptr<Base>(new Beta);
 		}
 		else if (type == 2)
 		{
