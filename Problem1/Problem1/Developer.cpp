@@ -51,7 +51,7 @@ ostream &operator << (ostream& os, const Developer &developer)
 
 	for (int i = 0; i < int(developer.technology.size()); ++i)
 	{
-		os << developer.technology[i]->getName() << '\n';
+		os << "    " << developer.technology[i]->getName() << '\n';
 	}
 
 	return os;

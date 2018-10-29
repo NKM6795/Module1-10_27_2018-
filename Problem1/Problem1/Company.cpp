@@ -15,6 +15,49 @@ float Company::getMaxEfficiency(Project *project, vector<Developer *> &developer
 	return result;
 }
 
+pair<vector<Project *>, vector<float> > Company::getListOfNotMadeProjects()
+{
+	vector<Project *> sortProjects;
+	vector<float> maxEfficiency;
+
+	for (int i = 0; i < int(projects.size()); ++i)
+	{
+		if (!projects[i]->completed && projects[i]->checkDevelopers(developers))
+		{
+			sortProjects.push_back(projects[i]);
+			maxEfficiency.push_back(getMaxEfficiency(projects[i], developers));
+
+			for (int j = int(sortProjects.size()) - 1; j > 0; --j)
+			{
+				if (sortProjects[j - 1]->getListOfTechnology()->size() > sortProjects[j]->getListOfTechnology()->size())
+				{
+					swap(sortProjects[j - 1], sortProjects[j]);
+					swap(maxEfficiency[j - 1], maxEfficiency[j]);
+				}
+				else if (sortProjects[j - 1]->getListOfTechnology()->size() == sortProjects[j]->getListOfTechnology()->size() &&
+					sortProjects[j - 1]->getComplexity() > sortProjects[j]->getComplexity())
+				{
+					swap(sortProjects[j - 1], sortProjects[j]);
+					swap(maxEfficiency[j - 1], maxEfficiency[j]);
+				}
+				else if (sortProjects[j - 1]->getListOfTechnology()->size() == sortProjects[j]->getListOfTechnology()->size() &&
+					sortProjects[j - 1]->getComplexity() == sortProjects[j]->getComplexity() &&
+					maxEfficiency[j - 1] < maxEfficiency[j])
+				{
+					swap(sortProjects[j - 1], sortProjects[j]);
+					swap(maxEfficiency[j - 1], maxEfficiency[j]);
+				}
+				else
+				{
+					j = 0;
+				}
+			}
+		}
+	}
+
+	return { sortProjects,  maxEfficiency };
+}
+
 
 Company::~Company()
 {
@@ -122,7 +165,7 @@ void Company::setProjects(string fileName, bool shortDemonstration)
 
 void Company::coutAllTechnology()
 {
-	cout << "Technology:\n";
+	cout << "Technology (" << technology.size()  << "):\n";
 	for (int i = 0; i < int(technology.size()); ++i)
 	{
 		cout << *technology[i];
@@ -133,7 +176,7 @@ void Company::coutAllTechnology()
 
 void Company::coutAllDeveloper()
 {
-	cout << "Developers:\n";
+	cout << "Developers (" << developers.size() << "):\n";
 	for (int i = 0; i < int(developers.size()); ++i)
 	{
 		cout << *developers[i] << '\n';
@@ -144,7 +187,7 @@ void Company::coutAllDeveloper()
 
 void Company::coutAllProject()
 {
-	cout << "Projects:\n";
+	cout << "Projects (" << projects.size()  << "):\n";
 	for (int i = 0; i < int(projects.size()); ++i)
 	{
 		cout << *projects[i] << '\n';
@@ -230,50 +273,109 @@ void Company::randomConnectionsInProjects()
 
 void Company::coutListOfNotMadeProjects()
 {
-	vector<Project *> sortProjects;
-	vector<float> maxEfficiency;
+	pair<vector<Project *>, vector<float>> listOfNotMadeProjects = getListOfNotMadeProjects();
 
-	for (int i = 0; i < int(projects.size()); ++i)
+	cout << "List of not made projects (" << listOfNotMadeProjects.first.size()  << "):\n";
+	for (int i = 0; i < int(listOfNotMadeProjects.first.size()); ++i)
 	{
-		if (!projects[i]->completed && projects[i]->checkDevelopers(developers))
-		{
-			sortProjects.push_back(projects[i]);
-			maxEfficiency.push_back(getMaxEfficiency(projects[i], developers));
-
-			for (int j = int(sortProjects.size()) - 1; j > 0; --j)
-			{
-				if (sortProjects[j - 1]->getListOfTechnology()->size() > sortProjects[j]->getListOfTechnology()->size())
-				{
-					swap(sortProjects[j - 1], sortProjects[j]);
-					swap(maxEfficiency[j - 1], maxEfficiency[j]);
-				}
-				else if (sortProjects[j - 1]->getListOfTechnology()->size() == sortProjects[j]->getListOfTechnology()->size() &&
-					sortProjects[j - 1]->getComplexity() > sortProjects[j]->getComplexity())
-				{
-					swap(sortProjects[j - 1], sortProjects[j]);
-					swap(maxEfficiency[j - 1], maxEfficiency[j]);
-				}
-				else if (sortProjects[j - 1]->getListOfTechnology()->size() == sortProjects[j]->getListOfTechnology()->size() &&
-					sortProjects[j - 1]->getComplexity() == sortProjects[j]->getComplexity() && 
-					maxEfficiency[j - 1] < maxEfficiency[j])
-				{
-					swap(sortProjects[j - 1], sortProjects[j]);
-					swap(maxEfficiency[j - 1], maxEfficiency[j]);
-				}
-				else
-				{
-					j = 0;
-				}
-			}
-		}
-	}
-
-	cout << "List of not made projects:\n";
-	for (int i = 0; i < int(sortProjects.size()); ++i)
-	{
-		cout << *sortProjects[i];
-		cout << "Max efficiency: " << maxEfficiency[i] << "\n\n";
+		cout << *listOfNotMadeProjects.first[i];
+		cout << "Max efficiency: " << listOfNotMadeProjects.second[i] << "\n\n";
 	}
 	cout << "*********************************************************************************************************************\n\
 *********************************************************************************************************************\n";
+}
+
+
+void Company::work(float deltaTime)
+{
+	bool comp = false;
+	while (!comp)
+	{
+		pair<vector<Project *>, vector<float>> listOfNotMadeProjects = getListOfNotMadeProjects();
+
+		for (int i = 0; i < int(listOfNotMadeProjects.first.size()); ++i)
+		{
+			bool check = true;
+
+			for (int j = 0; j < int(listOfNotMadeProjects.first[i]->getListOfProjects()->size()) && check; ++j)
+			{
+				if (!listOfNotMadeProjects.first[i]->getListOfProjects()->operator[](j)->completed)
+				{
+					check = false;
+				}
+			}
+
+			if (check)
+			{
+				listOfNotMadeProjects.first[i]->developersFill(developers, timer);
+				i = int(listOfNotMadeProjects.first.size());
+			}
+			else
+			{
+				comp = true;
+			}
+		}
+
+		if (listOfNotMadeProjects.first.size() == 0)
+		{
+			comp = true;
+		}
+
+	}
+
+	timer += deltaTime;
+
+	for (int i = 0; i < int(projects.size()); ++i)
+	{
+		if (!projects[i]->completed && projects[i]->wasStarted())
+		{
+			projects[i]->work(timer);
+		}
+	}
+}
+
+bool Company::canWork()
+{
+	pair<vector<Project *>, vector<float>> listOfNotMadeProjects = getListOfNotMadeProjects();
+
+	bool check1 = false;
+
+	for (int i = 0; i < int(listOfNotMadeProjects.first.size()) && !check1; ++i)
+	{
+		bool check = true;
+
+		for (int j = 0; j < int(listOfNotMadeProjects.first[i]->getListOfProjects()->size()) && check; ++j)
+		{
+			if (!listOfNotMadeProjects.first[i]->getListOfProjects()->operator[](j)->completed)
+			{
+				check = false;
+			}
+		}
+
+		if (check)
+		{
+			check1 = true;
+		}
+	}
+
+	if (check1)
+	{
+		return true;
+	}
+
+	bool check2 = false;
+
+	for (int i = 0; i < int(projects.size()) && !check2; ++i)
+	{
+		if (!projects[i]->completed && projects[i]->wasStarted())
+		{
+			check2 = true;
+		}
+	}
+
+	if (check2)
+	{
+		return true;
+	}
+	return false;
 }

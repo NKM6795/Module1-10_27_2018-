@@ -39,11 +39,22 @@ void demonstration()
 
 	company->coutAllElement();
 
-
 	company->coutListOfNotMadeProjects();
 
+	cout << "Work company with period 24h:\n\n";
+
+	while (company->canWork())
+	{
+		company->work(24.f);
+
+		company->coutAllProject();
+	}
 
 	delete company;
+
+	cin.get();
+	cin.get();
+	cin.get();
 }
 
 void checker()

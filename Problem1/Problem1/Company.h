@@ -11,19 +11,26 @@ class Company
 {
 	string name;
 
+
 	vector<Technology *> technology;
 
 	vector<Developer *> developers;
 
 	vector<Project *> projects;
 
+
+	float timer;
+
+
 	float getMaxEfficiency(Project *project, vector<Developer *> &developer);
+
+	pair<vector<Project *>, vector<float> > getListOfNotMadeProjects();
 
 public:
 	Company() :
-		name("") {}
+		name(""), timer(0.f) {}
 	Company(string name) :
-		name(name) {}
+		name(name), timer(0.f) {}
 
 	~Company();
 
@@ -48,4 +55,9 @@ public:
 	void randomConnectionsInProjects();
 
 	void coutListOfNotMadeProjects();
+
+
+	void work(float deltaTime);
+
+	bool canWork();
 };

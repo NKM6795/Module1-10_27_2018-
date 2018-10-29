@@ -118,8 +118,8 @@ bool Project::addDevelopers(bool needAdd, vector<Developer *> &developersForChec
 		{
 			if (right[i] == -1)
 			{
-				technology[i].second.push_back(mappingDevelopers[dev[i][0]]);
-				mappingDevelopers[dev[i][0]]->setProject(this);
+				technology[dev[i][0]].second.push_back(mappingDevelopers[i]);
+				mappingDevelopers[i]->setProject(this);
 			}
 		}
 	}
@@ -167,24 +167,81 @@ bool Project::checkDevelopers(vector<Developer *> &developersForCheck)
 }
 
 
+void Project::developersFill(vector<Developer *> &developersForFill, float globalTimer)
+{
+	if (addDevelopers(true, developersForFill)) {}
+
+	startTime = globalTimer;
+
+	float technologyCoefficient = 0.f;
+
+	for (int i = 0; i < int(technology.size()); ++i)
+	{
+		technologyCoefficient += technology[i].first->getCoefficientTime() * technology[i].first->needChange() +
+			technology[i].first->getCoefficientForCountOfDeveloper() * float(technology[i].second.size());
+	}
+
+	technologyCoefficient /= float(technology.size());
+
+	timeForWork = coefficientForTime[0] * (coefficientForTime[1] * complexity + coefficientForTime[2] * technologyCoefficient + coefficientForTime[3] * float(rand() % 100) / 100);
+
+	timer = 0.f;
+}
+
+void Project::work(float globalTimer)
+{
+	if (wasStarted())
+	{
+		timer = globalTimer;
+
+		if (timer - startTime >= timeForWork)
+		{
+			completed = true;
+
+			for (int i = 0; i < int(technology.size()); ++i)
+			{
+				for (int j = int(technology[i].second.size()) - 1; j >= 0; --j)
+				{
+					technology[i].second.back()->setProject(nullptr);
+					technology[i].second.pop_back();
+				}
+			}
+		}
+	}
+}
+
+bool Project::wasStarted()
+{
+	return timeForWork != 0.f;
+}
+
+
 ostream &operator << (ostream& os, const Project &project)
 {
-	os << "Name: " << project.name << ",    Complexity: " << project.complexity << "\nList of technology (" << project.technology.size() << "):\n";
+	os << "Name: " << project.name << ",    Complexity: " << project.complexity << ",     Completed: " << project.completed;
+	if (!project.completed)
+	{
+		os << ",    " << project.timer - project.startTime << " / " << project.timeForWork;
+	}
+	os << "\nList of technology (" << project.technology.size() << "):\n";
 
 	for (int i = 0; i < int(project.technology.size()); ++i)
 	{
-		os << "Technology: " << project.technology[i].first->getName() << "\nDevelopers (" << project.technology[i].second.size() << "):\n";
+		os << "Technology:\n    " << project.technology[i].first->getName() << "\nDevelopers (" << project.technology[i].second.size() << "):\n";
 		for (int j = 0; j < int(project.technology[i].second.size()); ++j)
 		{
-			os << project.technology[i].second[j] << '\n';
+			os << "    " << project.technology[i].second[j]->getName() << ",    Efficiency: " << project.technology[i].second[j]->getEfficiency() << '\n';
 		}
-
+		if (project.technology[i].second.size() == 0)
+		{
+			cout << '\n';
+		}
 	}
 
 	os << "List of project (" << project.toComplete.size() << "):\n";
 	for (int i = 0; i < int(project.toComplete.size()); ++i)
 	{
-		os << project.toComplete[i]->getName() << '\n';
+		os << "    " << project.toComplete[i]->getName() << '\n';
 	}
 
 	return os;
