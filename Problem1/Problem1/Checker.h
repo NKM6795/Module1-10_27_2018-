@@ -6,4 +6,6 @@
 
 void demonstration();
 
+void checkerForUser();
+
 void checker();

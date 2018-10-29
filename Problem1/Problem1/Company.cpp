@@ -163,6 +163,140 @@ void Company::setProjects(string fileName, bool shortDemonstration)
 }
 
 
+void Company::setTechnology()
+{
+	int n;
+	cin >> n;
+	cout << "----------\n";
+
+	for (int i = 0; i < n; ++i)
+	{
+		string temp;
+		getline(cin, temp);
+		getline(cin, temp);
+
+		float tempFloat[3];
+		cin >> tempFloat[0] >> tempFloat[1] >> tempFloat[2];
+
+		Technology *newTechnology = new Technology(temp, tempFloat[0], tempFloat[1], tempFloat[2]);
+		technology.push_back(newTechnology);
+
+		cout << "**************************************************\n";
+	}
+}
+
+void Company::setDevelopers()
+{
+	int n;
+	cin >> n;
+	cout << "----------\n";
+
+	for (int i = 0; i < n; ++i)
+	{
+		string temp;
+		getline(cin, temp);
+		getline(cin, temp);
+
+		float tempFloat;
+		cin >> tempFloat;
+
+		Developer *newDeveloper = new Developer(temp, tempFloat);
+		developers.push_back(newDeveloper);
+
+		int countOfTechnology;
+		cin >> countOfTechnology;
+		cout << "----------\n";
+
+		getline(cin, temp);
+		for (int j = 0; j < countOfTechnology; ++j)
+		{
+			getline(cin, temp);
+			int index = -1;
+			for (int k = 0; k < int(technology.size()) && index == -1; ++k)
+			{
+				if (technology[k]->getName() == temp)
+				{
+					index = k;
+				}
+			}
+
+			if (index != -1)
+			{
+				developers.back()->getListOfTechnology()->push_back(technology[index]);
+			}
+		}
+		cout << "**************************************************\n";
+	}
+}
+
+void Company::setProjects()
+{
+	int n;
+	cin >> n;
+	cout << "----------\n";
+
+	for (int i = 0; i < n; ++i)
+	{
+		string temp;
+		getline(cin, temp);
+		getline(cin, temp);
+
+		float tempFloat[5];
+		cin >> tempFloat[0] >> tempFloat[1] >> tempFloat[2] >> tempFloat[3] >> tempFloat[4];
+
+		Project *newProject = new Project(temp, tempFloat[0], { tempFloat[1], tempFloat[2], tempFloat[3], tempFloat[4] });
+		projects.push_back(newProject);
+
+		int countOfTechnology;
+		cin >> countOfTechnology;
+		cout << "----------\n";
+
+		getline(cin, temp);
+		for (int j = 0; j < countOfTechnology; ++j)
+		{
+			getline(cin, temp);
+			int index = -1;
+			for (int k = 0; k < int(technology.size()) && index == -1; ++k)
+			{
+				if (technology[k]->getName() == temp)
+				{
+					index = k;
+				}
+			}
+
+			if (index != -1)
+			{
+				projects.back()->getListOfTechnology()->push_back({ technology[index], vector<Developer *>() });
+			}
+		}
+
+		int countOfProjects;
+		cin >> countOfProjects;
+		cout << "----------\n";
+
+		getline(cin, temp);
+		for (int j = 0; j < countOfProjects; ++j)
+		{
+			getline(cin, temp);
+			int index = -1;
+			for (int k = 0; k < int(projects.size()) && index == -1; ++k)
+			{
+				if (projects[k]->getName() == temp)
+				{
+					index = k;
+				}
+			}
+
+			if (index != -1)
+			{
+				projects.back()->getListOfProjects()->push_back(projects[index]);
+			}
+		}
+		cout << "**************************************************\n";
+	}
+}
+
+
 void Company::coutAllTechnology()
 {
 	cout << "Technology (" << technology.size()  << "):\n";

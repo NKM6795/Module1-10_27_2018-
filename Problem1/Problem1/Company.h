@@ -41,6 +41,13 @@ public:
 	void setProjects(string fileName, bool shortDemonstration);
 
 
+	void setTechnology();
+
+	void setDevelopers();
+
+	void setProjects();
+
+
 	void coutAllTechnology();
 
 	void coutAllDeveloper();
